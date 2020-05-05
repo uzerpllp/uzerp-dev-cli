@@ -13,7 +13,7 @@ podman run --pod uzerp-pod --name uzerp-memcache -d memcached
 podman run --pod uzerp-pod --name uzerp-app-dev --security-opt label=disable \
 -v $UZERP_SOURCE_DIR:/var/www/html:rw \
 --env XDEBUG_CONFIG="${XDEBUG_CONFIG}" \
--d uzerp-apache
+-d uzerp-app-dev
 
 podman run --pod uzerp-pod --name uzerp-frepple --security-opt label=disable \
 -v ${XDG_CONFIG_HOME:-$HOME/.config}/uzerp/frepple/logs:/app/frepple/logs:rw \

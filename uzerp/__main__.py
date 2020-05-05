@@ -128,21 +128,21 @@ class cli(object):
     """Database operations"""
     def migrate(self):
       """Run phinx migrations"""
-      subprocess.run(["podman", "exec", "-i",  "uzerp-app", "php", "vendor/bin/phinx", "migrate", "-e", "development"])
+      subprocess.run(["podman", "exec", "-i",  "uzerp-app-dev", "php", "vendor/bin/phinx", "migrate", "-e", "development"])
 
     def rollback(self):
       """Roll back phinx migrations"""
-      subprocess.run(["podman", "exec", "-i",  "uzerp-app", "php", "vendor/bin/phinx", "rollback", "-e", "development"])
+      subprocess.run(["podman", "exec", "-i",  "uzerp-app-dev", "php", "vendor/bin/phinx", "rollback", "-e", "development"])
 
     def newmigration(self, migration_name):
       """Create new phinx migration"""
-      subprocess.run(["podman", "exec", "-i",  "uzerp-app", "php", "vendor/bin/phinx", "create", migration_name])
+      subprocess.run(["podman", "exec", "-i",  "uzerp-app-dev", "php", "vendor/bin/phinx", "create", migration_name])
 
   class composer(object):
     """Composer commands"""
     def install(self):
       """install/update php dependencies"""
-      subprocess.run(["podman", "exec", "-i",  "uzerp-app", "composer", "install"])
+      subprocess.run(["podman", "exec", "-i",  "uzerp-app-dev", "composer", "install"])
 
 def main():
   fire.Fire(cli())
