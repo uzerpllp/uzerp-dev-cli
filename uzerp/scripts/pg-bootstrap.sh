@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-#set -o errexit
-
 podman exec -i uzerp-postgres psql -U postgres -c "create user \"www-data\"  with encrypted password 'xxx';"
 podman exec -i uzerp-postgres psql -U postgres -c "create user sysadmin  with encrypted password 'sysadmin';"
 podman exec -i uzerp-postgres psql -U postgres -c "ALTER USER sysadmin WITH SUPERUSER;"
@@ -23,8 +21,4 @@ podman exec uzerp-frepple ./frepplectl.py migrate
 # Add uzerp-frepple schema and grants to uzERP database
 podman exec -i uzerp-postgres psql -U postgres --dbname=uzerp < ./frepple-schema.sql
 podman exec -i uzerp-postgres psql -U postgres --dbname=uzerp < ./frepple-grants.sql
-
-# Create your dev DB
-#podman exec -i uzerp-postgres -U postgres -c 'create database dev;'
-#podman exec -i uzerp-postgres -U postgres --dbname=dev database/some-dump
 
