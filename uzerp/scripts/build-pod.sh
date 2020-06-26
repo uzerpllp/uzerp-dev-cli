@@ -3,7 +3,7 @@ set -o errexit
 
 LOCALIP=$1
 UZERP_SOURCE_DIR=$2
-XDEBUG_CONFIG="remote_host=${LOCALIP} remote_port=9000"
+XDEBUG_CONFIG="remote_host=${LOCALIP} remote_port=9000 remote_log=/var/xdebug.log"
 POSTGRES_PASSWORD=xxx
 APPARMOR_OPT=""
 
