@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import time
 from termcolor import cprint
@@ -43,8 +44,10 @@ class Pod(object):
     script_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "scripts")
     working_dir = os.getcwd()
 
+    Path(os.path.join(XDG_CONFIG_HOME, "uzerp", "postgres", "data")).mkdir(parents=True, exist_ok=True)
     Path(os.path.join(XDG_CONFIG_HOME, "uzerp", "frepple", "etc")).mkdir(parents=True, exist_ok=True)
     Path(os.path.join(XDG_CONFIG_HOME, "uzerp", "frepple", "logs", "data", "default")).mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(os.path.join(script_dir, "postgres.conf"), os.path.join(XDG_CONFIG_HOME, "uzerp", "postgres", "postgres.conf"))
     shutil.copyfile(os.path.join(script_dir, "djangosettings.py"), os.path.join(XDG_CONFIG_HOME, "uzerp", "frepple", "etc", "djangosettings.py"))
 
     if not self.uzerp_file.is_file():
@@ -78,6 +81,7 @@ class Pod(object):
                                     "--security-opt", "label=disable",
                                     "-v", "{}:/var/www/html:rw".format(os.getcwd()),
                                     "--env", 'XDEBUG_CONFIG=remote_host={} remote_port=9000 remote_log=/var/xdebug.log'.format(ip),
+                                    "--env", "TZ=Europe/London",
                                     '-d', 'quay.io/uzerp/uzerp-app-dev'], capture_output=True)
 
   def up(self, ip):
@@ -86,7 +90,7 @@ class Pod(object):
     """
     if self._name is None:
       self.provision(ip)
-    elif self._name and self._status == "Exited":
+    elif self._name and (self._status == "Stopped" or self._status == "Exited"):
       subprocess.run(["podman", "pod", "start", self._name])
     self.update()
 
