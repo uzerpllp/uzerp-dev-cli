@@ -5,6 +5,7 @@ import subprocess
 import time
 from termcolor import cprint
 from xdg import XDG_CONFIG_HOME
+from xdg import XDG_DATA_HOME
 
 class Pod(object):
   """
@@ -44,9 +45,9 @@ class Pod(object):
     script_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "scripts")
     working_dir = os.getcwd()
 
-    Path(os.path.join(XDG_CONFIG_HOME, "uzerp", "postgres", "data")).mkdir(parents=True, exist_ok=True)
+    Path(os.path.join(XDG_DATA_HOME, "uzerp", "postgres", "data")).mkdir(parents=True, exist_ok=True)
     Path(os.path.join(XDG_CONFIG_HOME, "uzerp", "frepple", "etc")).mkdir(parents=True, exist_ok=True)
-    Path(os.path.join(XDG_CONFIG_HOME, "uzerp", "frepple", "logs", "data", "default")).mkdir(parents=True, exist_ok=True)
+    Path(os.path.join(XDG_DATA_HOME, "uzerp", "frepple", "logs", "data", "default")).mkdir(parents=True, exist_ok=True)
     shutil.copyfile(os.path.join(script_dir, "postgres.conf"), os.path.join(XDG_CONFIG_HOME, "uzerp", "postgres", "postgres.conf"))
     shutil.copyfile(os.path.join(script_dir, "djangosettings.py"), os.path.join(XDG_CONFIG_HOME, "uzerp", "frepple", "etc", "djangosettings.py"))
 

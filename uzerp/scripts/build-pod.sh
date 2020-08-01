@@ -10,7 +10,7 @@ TZ="Europe/London"
 podman pod create --name uzerp-pod -p 5432 -p 9187 -p 8080:80 -p 8085:5000
 podman run -d --pod uzerp-pod --name uzerp-postgres --security-opt label=disable \
 -v ${XDG_CONFIG_HOME:-$HOME/.config}/uzerp/postgres/postgres.conf:/etc/postgresql/postgresql.conf \
--v ${XDG_CONFIG_HOME:-$HOME/.config}/uzerp/postgres/data:/var/lib/postgresql/data \
+-v ${XDG_DATA_HOME:-$HOME/.local/share}/uzerp/postgres/data:/var/lib/postgresql/data \
 -e TZ=$TZ -e PGTZ=$TZ \
 -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD quay.io/uzerp/uzerp-postgres \
 -c "config_file=/etc/postgresql/postgresql.conf"
@@ -23,7 +23,7 @@ podman run --pod uzerp-pod --name uzerp-app-dev --security-opt label=disable \
 -d quay.io/uzerp/uzerp-app-dev
 
 podman run --pod uzerp-pod --name uzerp-frepple --security-opt label=disable \
--v ${XDG_CONFIG_HOME:-$HOME/.config}/uzerp/frepple/logs:/app/frepple/logs:rw \
+-v ${XDG_DATA_HOME:-$HOME/.local/share}/uzerp/frepple/logs:/app/frepple/logs:rw \
 -v ${XDG_CONFIG_HOME:-$HOME/.config}/uzerp/frepple/etc:/etc/frepple:ro \
 -e TZ=$TZ \
 -d quay.io/uzerp/uzerp-frepple
