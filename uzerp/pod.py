@@ -46,6 +46,7 @@ class Pod(object):
     working_dir = os.getcwd()
 
     Path(os.path.join(XDG_DATA_HOME, "uzerp", "postgres", "data")).mkdir(parents=True, exist_ok=True)
+    Path(os.path.join(XDG_CONFIG_HOME, "uzerp", "postgres")).mkdir(parents=True, exist_ok=True)
     Path(os.path.join(XDG_CONFIG_HOME, "uzerp", "frepple", "etc")).mkdir(parents=True, exist_ok=True)
     Path(os.path.join(XDG_DATA_HOME, "uzerp", "frepple", "logs", "data", "default")).mkdir(parents=True, exist_ok=True)
     shutil.copyfile(os.path.join(script_dir, "postgres.conf"), os.path.join(XDG_CONFIG_HOME, "uzerp", "postgres", "postgres.conf"))
