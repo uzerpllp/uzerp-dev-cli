@@ -12,8 +12,6 @@ else
     # Create demo database
     podman exec -i uzerp-postgres psql -U postgres -c 'create database uzerp;'
     podman exec -i uzerp-postgres pg_restore -U postgres --dbname=uzerp < $1/schema/database/postgresql/uzerp-demo-dist.sql
-    # Migrate using phinx
-    podman exec -i uzerp-app-dev php vendor/bin/phinx migrate -e development
 
     # Create frepple database
     podman exec -i uzerp-postgres psql -U postgres -c "create user frepple with encrypted password 'frepple';"
