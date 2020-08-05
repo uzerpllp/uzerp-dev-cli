@@ -18,9 +18,11 @@ else
     podman exec -i uzerp-postgres psql -U postgres -c 'create database frepple;'
     podman exec -i uzerp-postgres psql -U postgres -c "ALTER DATABASE frepple OWNER TO frepple;"
     podman exec -i uzerp-postgres psql -U postgres -c "ALTER ROLE frepple WITH CREATEROLE;"
-    # Run frepple migrations
-    podman exec uzerp-frepple ./frepplectl.py migrate
+
     # Add uzerp-frepple schema and grants to uzERP database
     podman exec -i uzerp-postgres psql -U postgres --dbname=uzerp < ./frepple-schema.sql
     podman exec -i uzerp-postgres psql -U postgres --dbname=uzerp < ./frepple-grants.sql
 fi
+
+# Run frepple migrations
+podman exec uzerp-frepple ./frepplectl.py migrate
