@@ -92,7 +92,7 @@ class Pod(object):
     """
     if self._name is None:
       self.provision(ip)
-    elif self._name and (self._status == "Stopped" or self._status == "Exited"):
+    elif self._name and (self._status == "Stopped" or self._status == "Exited" or self._status == "Created"):
       subprocess.run(["podman", "pod", "start", self._name])
     self.update()
 
