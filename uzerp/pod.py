@@ -82,7 +82,9 @@ class Pod(object):
                                     "--name", "uzerp-app-dev",
                                     "--security-opt", "label=disable",
                                     "-v", "{}:/var/www/html:rw".format(os.getcwd()),
-                                    "--env", 'XDEBUG_CONFIG=remote_host={} remote_port=9000 remote_log=/var/xdebug.log'.format(ip),
+                                    "--env", 'XDEBUG_CONFIG=client_host={} client_port=9000 log=/tmp/xdebug.log'.format(ip),
+                                    "--env", "XDEBUG_MODE=debug",
+                                    "--env", "XDEBUG_TRIGGER=default",
                                     "--env", "TZ=Europe/London",
                                     '-d', 'quay.io/uzerp/uzerp-app-dev'], capture_output=True)
 
