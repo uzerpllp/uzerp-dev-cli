@@ -15,7 +15,7 @@ podman run -d --pod uzerp-pod --name uzerp-postgres --security-opt label=disable
 -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD quay.io/uzerp/uzerp-postgres:latest \
 -c "config_file=/etc/postgresql/postgresql.conf"
 
-podman run --pod uzerp-pod --name docker.io/uzerp-memcache:latest -e TZ=$TZ -d memcached
+podman run --pod uzerp-pod --name uzerp-memcache -e TZ=$TZ -d docker.io/memcached:latest
 
 podman run --pod uzerp-pod --name uzerp-app-dev --security-opt label=disable \
 -v $UZERP_SOURCE_DIR:/var/www/html:rw \
