@@ -1,6 +1,6 @@
 from setuptools import setup
 setup(name='uzerp',
-      version='21.7.0',
+      version='21.7.1',
       packages=['uzerp'],
       entry_points={
           'console_scripts': [
