@@ -21,7 +21,6 @@ podman run --pod uzerp-pod --name uzerp-app-dev --security-opt label=disable \
 -v $UZERP_SOURCE_DIR:/var/www/html:rw \
 --env XDEBUG_CONFIG="${XDEBUG_CONFIG}" \
 --env XDEBUG_MODE="debug" \
---env XDEBUG_TRIGGER="default" \
 -e TZ=$TZ \
 -d quay.io/uzerp/uzerp-app-dev:latest
 
