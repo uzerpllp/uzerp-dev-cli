@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2007-2015 by frePPLe bvba
+# Copyright (C) 2007-2015 by frePPLe bv
 #
 # This library is free software; you can redistribute it and/or modify it
 # under the terms of the GNU Affero General Public License as published
@@ -19,7 +19,8 @@
 r"""
 Main Django configuration file.
 """
-import os, sys
+import os
+import sys
 
 from django.utils.translation import gettext_lazy as _
 
@@ -43,22 +44,27 @@ SECRET_KEY = "%@mzit!i8b*$zc&6oev96=RANDOMSTRING"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
+        # Database name
         "NAME": "frepple",
-        "USER": "frepple",  # Role name when using md5 authentication.
+        # Role name when using md5 authentication.
         # Leave as an empty string when using peer or
         # ident authencation.
-        "PASSWORD": "frepple",  # Role password when using md5 authentication.
+        "USER": "frepple",
+        # Role password when using md5 authentication.
         # Leave as an empty string when using peer or
         # ident authencation.
-        "HOST": "localhost",  # When using TCP sockets specify the hostname,
+        "PASSWORD": "frepple",
+        # When using TCP sockets specify the hostname,
         # the ip4 address or the ip6 address here.
         # Leave as an empty string to use Unix domain
         # socket ("local" lines in pg_hba.conf).
-        "PORT": "5432",  # Leave to empty string when using Unix domain sockets.
+        "HOST": "localhost",
         # Specify the port number when using a TCP socket.
-        "OPTIONS": {},  # Backend specific configuration parameters.
+        "PORT": "5432",
+        "OPTIONS": {},
+        "CONN_MAX_AGE": 60,
         "TEST": {
-            "NAME": "frepple"  # Database name used when running the test suite.
+            "NAME": "test_frepple"  # Database name used when running the test suite.
         },
         "FILEUPLOADFOLDER": os.path.normpath(
             os.path.join(FREPPLE_LOGDIR, "data", "default")
@@ -72,20 +78,25 @@ DATABASES = {
     },
     "scenario1": {
         "ENGINE": "django.db.backends.postgresql",
+        # Database name
         "NAME": "scenario1",
-        "USER": "frepple",  # Role name when using md5 authentication.
+        # Role name when using md5 authentication.
         # Leave as an empty string when using peer or
         # ident authencation.
-        "PASSWORD": "frepple",  # Role password when using md5 authentication.
+        "USER": "frepple",
+        # Role password when using md5 authentication.
         # Leave as an empty string when using peer or
         # ident authencation.
-        "HOST": "",  # When using TCP sockets specify the hostname,
+        "PASSWORD": "frepple",
+        # When using TCP sockets specify the hostname,
         # the ip4 address or the ip6 address here.
         # Leave as an empty string to use Unix domain
         # socket ("local" lines in pg_hba.conf).
-        "PORT": "",  # Leave to empty string when using Unix domain sockets.
+        "HOST": "",
         # Specify the port number when using a TCP socket.
-        "OPTIONS": {},  # Backend specific configuration parameters.
+        "PORT": "",
+        "OPTIONS": {},
+        "CONN_MAX_AGE": 60,
         "TEST": {
             "NAME": "test_scenario1"  # Database name used when running the test suite.
         },
@@ -101,20 +112,25 @@ DATABASES = {
     },
     "scenario2": {
         "ENGINE": "django.db.backends.postgresql",
+        # Database name
         "NAME": "scenario2",
-        "USER": "frepple",  # Role name when using md5 authentication.
+        # Role name when using md5 authentication.
         # Leave as an empty string when using peer or
         # ident authencation.
-        "PASSWORD": "frepple",  # Role password when using md5 authentication.
+        "USER": "frepple",
+        # Role password when using md5 authentication.
         # Leave as an empty string when using peer or
         # ident authencation.
-        "HOST": "",  # When using TCP sockets specify the hostname,
+        "PASSWORD": "frepple",
+        # When using TCP sockets specify the hostname,
         # the ip4 address or the ip6 address here.
         # Leave as an empty string to use Unix domain
         # socket ("local" lines in pg_hba.conf).
-        "PORT": "",  # Leave to empty string when using Unix domain sockets.
+        "HOST": "",
         # Specify the port number when using a TCP socket.
-        "OPTIONS": {},  # Backend specific configuration parameters.
+        "PORT": "",
+        "OPTIONS": {},
+        "CONN_MAX_AGE": 60,
         "TEST": {
             "NAME": "test_scenario2"  # Database name used when running the test suite.
         },
@@ -130,20 +146,25 @@ DATABASES = {
     },
     "scenario3": {
         "ENGINE": "django.db.backends.postgresql",
+        # Database name
         "NAME": "scenario3",
-        "USER": "frepple",  # Role name when using md5 authentication.
+        # Role name when using md5 authentication.
         # Leave as an empty string when using peer or
         # ident authencation.
-        "PASSWORD": "frepple",  # Role password when using md5 authentication.
+        "USER": "frepple",
+        # Role password when using md5 authentication.
         # Leave as an empty string when using peer or
         # ident authencation.
-        "HOST": "",  # When using TCP sockets specify the hostname,
+        "PASSWORD": "frepple",
+        # When using TCP sockets specify the hostname,
         # the ip4 address or the ip6 address here.
         # Leave as an empty string to use Unix domain
         # socket ("local" lines in pg_hba.conf).
-        "PORT": "",  # Leave to empty string when using Unix domain sockets.
+        "HOST": "",
         # Specify the port number when using a TCP socket.
-        "OPTIONS": {},  # Backend specific configuration parameters.
+        "PORT": "",
+        "OPTIONS": {},
+        "CONN_MAX_AGE": 60,
         "TEST": {
             "NAME": "test_scenario3"  # Database name used when running the test suite.
         },
@@ -158,8 +179,6 @@ DATABASES = {
         "SECRET_WEBTOKEN_KEY": SECRET_KEY,
     },
 }
-
-LANGUAGE_CODE = "en"
 
 # uzERP database connection settings
 UZERP_DB = {
@@ -185,11 +204,18 @@ UZERP_SETTINGS = {
 	}
 }
 
+LANGUAGE_CODE = "en"
+
 # Google analytics code to report usage statistics to.
 # The value None disables this feature.
 GOOGLE_ANALYTICS = None  # "UA-1950616-4"
 
 # ================= END UPDATED BLOCK BY WINDOWS INSTALLER =================
+
+# A list of user names thatcan generate database dumps and download them.
+# Since a database dump exposes all data, enabling this functionality should only be done
+# for system administrators that know what they are doing.
+SUPPORT_USERS = []
 
 # If passwords are set in this file they will be used instead of the ones set in the database parameters table
 ODOO_PASSWORDS = {"default": "", "scenario1": "", "scenario2": "", "scenario3": ""}
@@ -203,11 +229,6 @@ ODOO_PASSWORDS = {"default": "", "scenario1": "", "scenario2": "", "scenario3": 
 # system time zone.
 TIME_ZONE = "Europe/London"
 
-# A boolean that specifies if datetimes will be timezone-aware by default or not.
-# If this is set to True, we will use timezone-aware datetimes internally.
-# Otherwise, we use naive datetimes in local time.
-USE_TZ = False  # TODO Test with this parameter set to True
-
 # Supported language codes, sorted by language code.
 # Language names and codes should match the ones in Django.
 # You can see the list supported by Django at:
@@ -217,6 +238,7 @@ LANGUAGES = (
     ("fr", _("French")),
     ("de", _("German")),
     ("he", _("Hebrew")),
+    ("hr", _("Croatian")),
     ("it", _("Italian")),
     ("ja", _("Japanese")),
     ("nl", _("Dutch")),
@@ -224,8 +246,9 @@ LANGUAGES = (
     ("pt-br", _("Brazilian Portuguese")),
     ("ru", _("Russian")),
     ("es", _("Spanish")),
-    ("zh-cn", _("Simplified Chinese")),
-    ("zh-tw", _("Traditional Chinese")),
+    ("zh-hans", _("Simplified Chinese")),
+    ("zh-hant", _("Traditional Chinese")),
+    ("uk", _("Ukrainian")),
 )
 
 # The remember-me checkbox on the login page allows to keep a session cookie
@@ -234,14 +257,20 @@ LANGUAGES = (
 # Set the value to 0 to force users to log in for every browser session.
 SESSION_COOKIE_AGE = 3600 * 24 * 3  # 3 days
 
+# Users are automatically logged out after this period of inactivity
+SESSION_LOGOUT_IDLE_TIME = 60  # minutes
+
 MIDDLEWARE = (
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     # Uncomment the next line to automatically log on as the admin user,
     # which can be useful for development or for demo models.
-    # 'freppledb.common.middleware.AutoLoginAsAdminUser',
+    # "freppledb.common.middleware.AutoLoginAsAdminUser",
     "freppledb.common.middleware.MultiDBMiddleware",
+    # Optional: The following middleware allows authentication with HTTP headers
+    "freppledb.common.middleware.HTTPAuthenticationMiddleware",
     "freppledb.common.middleware.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -255,12 +284,12 @@ INSTALLED_APPS = (
     "django.contrib.contenttypes",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "bootstrap3",
     "freppledb.boot",
     # Add any project specific apps here
     # "freppledb.odoo",
     "uzerp",
     #'freppledb.erpconnection',
+    "freppledb.wizard",
     "freppledb.input",
     "freppledb.output",
     "freppledb.metrics",
@@ -268,12 +297,12 @@ INSTALLED_APPS = (
     "freppledb.common",
     "django_filters",
     "rest_framework",
-    "django_admin_bootstrapped",
     "django.contrib.admin",
+    "freppledb.archive",
     # The next two apps allow users to run their own SQL statements on
     # the database, using the SQL_ROLE configured above.
     "freppledb.reportmanager",
-    # "freppledb.executesql",
+    "freppledb.executesql",
 )
 
 # Custom attribute fields in the database
@@ -309,41 +338,14 @@ INSTALLED_APPS = (
 #    ]
 ATTRIBUTES = []
 
-import django.contrib.admindocs
-
-LOCALE_PATHS = (
-    os.path.normpath(os.path.join(FREPPLE_HOME, "locale", "django")),
-    os.path.normpath(os.path.join(FREPPLE_HOME, "locale", "auth")),
-    os.path.normpath(os.path.join(FREPPLE_HOME, "locale", "contenttypes")),
-    os.path.normpath(os.path.join(FREPPLE_HOME, "locale", "sessions")),
-    os.path.normpath(os.path.join(FREPPLE_HOME, "locale", "admin")),
-    os.path.normpath(os.path.join(FREPPLE_HOME, "locale", "messages")),
-    os.path.normpath(os.path.join(FREPPLE_APP, "freppledb", "locale")),
-    os.path.normpath(
-        os.path.join(os.path.dirname(django.contrib.admindocs.__file__), "locale")
-    ),
-)
-
-TEMPLATES = [
-    {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            # os.path.normpath(os.path.join(FREPPLE_HOME,'templates')),
-        ],
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "builtins": ["freppledb.common.templatetags"],
-            "context_processors": [
-                "freppledb.common.contextprocessors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
-                "django.template.context_processors.i18n",
-                "django.template.context_processors.static",
-            ],
-        },
+# Memory cache
+CACHE_GRID_COUNT = None
+CACHE_PIVOT_COUNT = None
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
     }
-]
+}
 
 LOGGING = {
     "version": 1,
@@ -371,10 +373,10 @@ LOGGING = {
     "loggers": {
         # A handler to log all SQL queries.
         # The setting "DEBUG" also needs to be set to True higher up in this file.
-        #'django.db.backends': {
-        #    'handlers': ['console'],
-        #    'level': 'DEBUG',
-        #    'propagate': False,
+        # "django.db.backends": {
+        #     "handlers": ["console"],
+        #     "level": "DEBUG",
+        #     "propagate": False,
         # },
         "django": {"handlers": ["console"], "level": "INFO"},
         "freppledb": {"handlers": ["console"], "level": "INFO"},
@@ -422,8 +424,8 @@ DEFAULT_DASHBOARD = [
     {
         "rowname": _("Welcome"),
         "cols": [
-            {"width": 6, "widgets": [("welcome", {})]},
-            {"width": 6, "widgets": [("news", {})]},
+            {"width": 8, "widgets": [("inbox", {"limit": 10})]},
+            {"width": 4, "widgets": [("news", {})]},
         ],
     },
     {
@@ -432,8 +434,10 @@ DEFAULT_DASHBOARD = [
             {
                 "width": 9,
                 "widgets": [
-                    ("late_orders", {"limit": 20}),
-                    ("short_orders", {"limit": 20}),
+                    (
+                        "analysis_demand_problems",
+                        {"top": 20, "orderby": "latedemandvalue"},
+                    )
                 ],
             },
             {
@@ -441,6 +445,7 @@ DEFAULT_DASHBOARD = [
                 "widgets": [
                     ("demand_alerts", {}),
                     ("delivery_performance", {"green": 90, "yellow": 80}),
+                    ("archived_demand", {"history": 12}),
                 ],
             },
         ],
@@ -459,6 +464,7 @@ DEFAULT_DASHBOARD = [
             {
                 "width": 3,
                 "widgets": [
+                    ("archived_purchase_order", {"history": 12}),
                     ("inventory_by_location", {"limit": 5}),
                     ("inventory_by_item", {"limit": 10}),
                 ],
@@ -473,6 +479,7 @@ DEFAULT_DASHBOARD = [
                 "widgets": [
                     ("distribution_orders", {"fence1": 7, "fence2": 30}),
                     # ("shipping_queue",{"limit":20}),
+                    ("archived_buffer", {"history": 12}),
                 ],
             }
         ],
@@ -496,13 +503,6 @@ DEFAULT_DASHBOARD = [
             },
         ],
     },
-    {
-        "rowname": _("activity"),
-        "cols": [
-            {"width": 6, "widgets": [("recent_comments", {"limit": 10})]},
-            {"width": 6, "widgets": [("recent_actions", {"limit": 10})]},
-        ],
-    },
 ]
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -517,13 +517,49 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
+# Configuration of SMTP mail server
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "your_email@domain.com"
 SERVER_EMAIL = "your_email@domain.com"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
 EMAIL_HOST_USER = "your_email@domain.com"
 EMAIL_HOST_PASSWORD = "frePPLeIsTheBest"
+EMAIL_HOST = None
+EMAIL_PORT = 25
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+# Clickjacking security http headers
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
+# Default: allow content from same domain
+CONTENT_SECURITY_POLICY = "frame-ancestors 'self'"
+X_FRAME_OPTIONS = "SAMEORIGIN"
+# Alternative: prohibit embedding in any frame
+#   CONTENT_SECURITY_POLICY = "frame-ancestors 'none'"
+#   X_FRAME_OPTIONS = "DENY"
+# Alternative: allow embedding in a specific domain
+#   CONTENT_SECURITY_POLICY = "frame-ancestors 'self' mydomain.com;"
+#   X_FRAME_OPTIONS = None
+
+# Configuration of the ftp/sftp/ftps server where to upload reports
+# Note that for SFTP protocol, the host needs to be defined
+# in the known_hosts file
+# These variables can either be a string if common to all scenarios
+# or a dictionary if they vary per scenario (see FTP_FOLDER EXAMPLE)
+FTP_PROTOCOL = "SFTP"  # supported protocols are SFTP, FTPS and FTP (unsecure)
+FTP_HOST = None
+FTP_PORT = 22
+FTP_USER = None
+FTP_PASSWORD = None
+FTP_FOLDER = {
+    "default": None,
+    "scenario1": None,
+    "scenario2": None,
+    "scenario3": None,
+}  # folder where the files should be uploaded on the remote server
+
 # Port number when not using Apache
 PORT = 8000
+
+# Browser to test with selenium
+SELENIUM_TESTS = "chrome"
+SELENIUM_HEADLESS = True
