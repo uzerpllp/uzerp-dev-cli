@@ -12,7 +12,7 @@ podman run -d --pod uzerp-pod --name uzerp-postgres --security-opt label=disable
 -v ${XDG_CONFIG_HOME:-$HOME/.config}/uzerp/postgres/postgres.conf:/etc/postgresql/postgresql.conf \
 -v ${XDG_DATA_HOME:-$HOME/.local/share}/uzerp/postgres/data:/var/lib/postgresql/data \
 -e TZ=$TZ -e PGTZ=$TZ \
--e POSTGRES_PASSWORD=$POSTGRES_PASSWORD quay.io/uzerp/uzerp-postgres:latest \
+-e POSTGRES_PASSWORD=$POSTGRES_PASSWORD ghcr.io/uzerpllp/uzerp-postgres:latest \
 -c "config_file=/etc/postgresql/postgresql.conf"
 
 podman run --pod uzerp-pod --name uzerp-memcache -e TZ=$TZ -d docker.io/memcached:latest
@@ -22,11 +22,11 @@ podman run --pod uzerp-pod --name uzerp-app-dev --security-opt label=disable \
 --env XDEBUG_CONFIG="${XDEBUG_CONFIG}" \
 --env XDEBUG_MODE="debug" \
 -e TZ=$TZ \
--d quay.io/uzerp/uzerp-app-dev:latest
+-d ghcr.io/uzerpllp/uzerp-app-dev:latest
 
 podman run --pod uzerp-pod --name uzerp-frepple --security-opt label=disable \
 -v ${XDG_DATA_HOME:-$HOME/.local/share}/uzerp/frepple/logs:/app/frepple/logs:rw \
 -v ${XDG_CONFIG_HOME:-$HOME/.config}/uzerp/frepple/etc:/etc/frepple:ro \
 -e TZ=$TZ \
--d quay.io/uzerp/uzerp-frepple:latest
+-d ghcr.io/uzerpllp/uzerp-frepple:latest
 
