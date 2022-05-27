@@ -7,7 +7,7 @@ XDEBUG_CONFIG="client_host=${LOCALIP} client_port=9000 log=/tmp/xdebug.log"
 POSTGRES_PASSWORD=xxx
 TZ="Europe/London"
 
-podman pod create --name uzerp-pod -p 5432 -p 9187 -p 8080:80 -p 8085:5000
+podman pod create --name uzerp-pod -p 5432:5432 -p 9187:9187 -p 8080:80 -p 8085:5000
 podman run -d --pod uzerp-pod --name uzerp-postgres --security-opt label=disable \
 -v ${XDG_CONFIG_HOME:-$HOME/.config}/uzerp/postgres/postgres.conf:/etc/postgresql/postgresql.conf \
 -v ${XDG_DATA_HOME:-$HOME/.local/share}/uzerp/postgres/data:/var/lib/postgresql/data \
