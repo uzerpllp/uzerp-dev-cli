@@ -85,7 +85,7 @@ class Pod(object):
                                     "--env", 'XDEBUG_CONFIG=client_host={} client_port=9000 log=/tmp/xdebug.log'.format(ip),
                                     "--env", "XDEBUG_MODE=debug",
                                     "--env", "TZ=Europe/London",
-                                    '-d', 'quay.io/uzerp/uzerp-app-dev'], capture_output=True)
+                                    '-d', 'ghcr.io/uzerpllp/uzerp-app-dev'], capture_output=True)
 
   def up(self, ip):
     """
