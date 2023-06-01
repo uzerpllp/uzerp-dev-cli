@@ -82,10 +82,10 @@ $ cp conf/config-example.php conf/config.php
 
 Edit config.php. Change database name to 'uzerp' and host to 'localhost'.
 
-Set an ACL on the data dirs, so that www-data inside the container can create directories/files:
+Set ownership of the data directory that www-data inside the container can create directories/files:
 
 ```
-$ setfacl -R -m "u:100032:rwx" ~/uzerp/data
+podman unshare chown 33:33 -R ./data
 ```
 
 Browse to http://localhost:8080 and log in to uzERP with the default password username and password admin/admin
