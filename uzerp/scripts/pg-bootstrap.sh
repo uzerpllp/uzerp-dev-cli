@@ -14,15 +14,15 @@ else
     podman exec -i uzerp-postgres pg_restore -U postgres --dbname=uzerp < $1/schema/database/postgresql/uzerp-demo-dist.sql
 
     # Create frepple database
-    podman exec -i uzerp-postgres psql -U postgres -c "create user frepple with encrypted password 'frepple';"
-    podman exec -i uzerp-postgres psql -U postgres -c 'create database frepple;'
-    podman exec -i uzerp-postgres psql -U postgres -c "ALTER DATABASE frepple OWNER TO frepple;"
-    podman exec -i uzerp-postgres psql -U postgres -c "ALTER ROLE frepple WITH CREATEROLE;"
+    #podman exec -i uzerp-postgres psql -U postgres -c "create user frepple with encrypted password 'frepple';"
+    #podman exec -i uzerp-postgres psql -U postgres -c 'create database frepple;'
+    #podman exec -i uzerp-postgres psql -U postgres -c "ALTER DATABASE frepple OWNER TO frepple;"
+    #podman exec -i uzerp-postgres psql -U postgres -c "ALTER ROLE frepple WITH CREATEROLE;"
 
     # Add uzerp-frepple schema and grants to uzERP database
-    podman exec -i uzerp-postgres psql -U postgres --dbname=uzerp < ./frepple-schema.sql
-    podman exec -i uzerp-postgres psql -U postgres --dbname=uzerp < ./frepple-grants.sql
+    #podman exec -i uzerp-postgres psql -U postgres --dbname=uzerp < ./frepple-schema.sql
+    #podman exec -i uzerp-postgres psql -U postgres --dbname=uzerp < ./frepple-grants.sql
 fi
 
 # Run frepple migrations
-podman exec uzerp-frepple ./frepplectl.py migrate
+#podman exec uzerp-frepple ./frepplectl.py migrate
