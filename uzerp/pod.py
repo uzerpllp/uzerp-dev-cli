@@ -47,10 +47,7 @@ class Pod(object):
 
     Path(os.path.join(XDG_DATA_HOME, "uzerp", "postgres", "data")).mkdir(parents=True, exist_ok=True)
     Path(os.path.join(XDG_CONFIG_HOME, "uzerp", "postgres")).mkdir(parents=True, exist_ok=True)
-    Path(os.path.join(XDG_CONFIG_HOME, "uzerp", "frepple", "etc")).mkdir(parents=True, exist_ok=True)
-    Path(os.path.join(XDG_DATA_HOME, "uzerp", "frepple", "logs", "data", "default")).mkdir(parents=True, exist_ok=True)
     shutil.copyfile(os.path.join(script_dir, "postgres.conf"), os.path.join(XDG_CONFIG_HOME, "uzerp", "postgres", "postgres.conf"))
-    shutil.copyfile(os.path.join(script_dir, "djangosettings.py"), os.path.join(XDG_CONFIG_HOME, "uzerp", "frepple", "etc", "djangosettings.py"))
 
     if not self.uzerp_file.is_file():
       cprint("Provisioning needed: please run this command in the top-level directory of uzERP source code", 'red')
