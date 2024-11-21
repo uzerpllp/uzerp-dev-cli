@@ -74,7 +74,6 @@ class Pod(object):
     find_app_container = subprocess.run(["podman",  "ps", '--filter', 'name=uzerp-app-dev', '--format="{{.ID}}"'], capture_output=True)
     app_container = find_app_container.stdout.decode("utf-8").replace('"', '').replace('\n', '')
     cprint('Replacing app container...', 'green')
-    #remove_container = subprocess.run(["podman",  "rm",  app_container, '--force'], capture_output=True)
     add_container = subprocess.run(["podman", "run",  "--replace", "--pod", self._name,
                                     "--name", "uzerp-app-dev",
                                     "--security-opt", "label=disable",
