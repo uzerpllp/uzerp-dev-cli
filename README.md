@@ -38,7 +38,7 @@ export PATH="$(systemd-path user-binaries):$PATH"
 Close the terminal session and start a new one, then install the CLI package:
 
 ```
-$ pip3 install --user https://github.com/uzerpllp/uzerp-dev-cli/dist/uzerp-24.8.1-py3-none-any.whl
+$ pip3 install --user https://github.com/uzerpllp/uzerp-dev-cli/dist/uzerp-1.2-py3-none-any.whl
 ```
 
 ### Set-up uzERP
