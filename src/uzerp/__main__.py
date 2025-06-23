@@ -5,6 +5,8 @@ import fire
 from termcolor import cprint
 from uzerp.pod import Pod
 
+__version__ = "1.2"
+
 
 class cli(object):
     """
