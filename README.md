@@ -15,21 +15,7 @@ The uzERP development CLI provides an easy way to get a local ERP development or
 
 ### Podman
 
-The uzERP dev CLI uses podman to run the required containers. On Fedora podman is in the yum repos, simply `dnf install podman`.
-
-On Ubuntu 20.04, podman can be installed from the repos maintained by Kubic:
-
-```
-$ . /etc/os-release
-
-$ sudo sh -c "echo 'deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /' > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
-
-$ curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key | sudo apt-key add -
-
-$ sudo apt-get update -qq
-
-$ sudo apt install podman fuse-overlayfs
-```
+The uzERP dev CLI uses podman to run the required containers. Simply `dnf install podman`.
 
 ### uzERP Development Commandline
 
@@ -43,7 +29,7 @@ Before installing this package, install some additional requirements:
 $ sudo apt install python3-pip git npm
 ```
 
-On Ubuntu 20.04, edit your `.bashrc` file to ensure that the path for user-binaries is set by appending the following:
+On Ubuntu you might need edit your `.bashrc` file to ensure that the path for user-binaries is set by appending the following:
 
 ```
 export PATH="$(systemd-path user-binaries):$PATH"
@@ -52,7 +38,7 @@ export PATH="$(systemd-path user-binaries):$PATH"
 Close the terminal session and start a new one, then install the CLI package:
 
 ```
-$ pip3 install --user https://github.com/uzerpllp/uzerp-dev-cli/archive/master.zip
+$ pip3 install --user https://github.com/uzerpllp/uzerp-dev-cli/dist/uzerp-24.8.1-py3-none-any.whl
 ```
 
 ### Set-up uzERP

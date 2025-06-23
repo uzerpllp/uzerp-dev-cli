@@ -1,0 +1,20 @@
+[project]
+name = "uzerp"
+version = "24.8.1"
+description = "The uzERP development CLI provides an easy way to get a local ERP development or demo environment up and running quickly."
+readme = "README.md"
+authors = [
+    { name = "Steve Blamey", email = "sblamey@uzerp.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "fire>=0.7.0",
+    "xdg>=6.0.0",
+]
+
+[project.scripts]
+uzerp = "uzerp.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
