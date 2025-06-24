@@ -5,15 +5,18 @@ import fire
 from termcolor import cprint
 from uzerp.pod import Pod
 
-__version__ = "1.2"
-
 
 class cli(object):
     """
     uzERP podman pod control.
     """
+    __version__ = "1.2"
+    
     def __init__(self):
         self.our_pod = Pod()
+    
+    def version(self):
+        print(self.__version__)
 
     def up(self, ip='127.0.0.1'):
         """
@@ -84,7 +87,8 @@ class cli(object):
 
 def main():
     c = cli()
-    fire.Fire({'up': c.up,
+    fire.Fire({'version': c.version,
+        'up': c.up,
         'debugip': c.debugip,
         'status': c.status,
         'stop': c.stop,

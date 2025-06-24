@@ -15,11 +15,11 @@ dependencies = [
 ]
 
 [project.scripts]
-uzerp = "uzerp.__main__:main"
+uzerp = "uzerp.commands:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.version]
-path = "src/uzerp/__main__.py"
+path = "src/uzerp/commands.py"
