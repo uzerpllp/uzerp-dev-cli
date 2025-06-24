@@ -22,7 +22,6 @@ wheels = [
 
 [[package]]
 name = "uzerp"
-version = "24.8.1"
 source = { editable = "." }
 dependencies = [
     { name = "fire" },
